@@ -1,0 +1,13 @@
+# Tested on Python 3.15 (macOS arm64). pygame-ce is a drop-in replacement for
+# pygame (imports as `pygame`); upstream pygame has no wheel for Python 3.15.
+gymnasium==1.4.0
+torch==2.15.0
+stable-baselines3==2.9.2
+pygame-ce==2.5.8
+numpy==2.5.5
+pandas==3.1.1
+matplotlib==3.11.2
+plotly==7.2.0
+tensorboard==2.21.0
+PyYAML==6.0.4
+pytest==9.2.0

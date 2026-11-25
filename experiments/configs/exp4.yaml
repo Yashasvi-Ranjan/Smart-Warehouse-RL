@@ -1,0 +1,24 @@
+# Experiment 4 - battery constraints. Cases per algorithm:
+#   with_battery            trained + evaluated with battery
+#   no_battery              trained + evaluated without battery
+#   no_battery_agent_in_battery_env   unconstrained-trained agent evaluated under battery rules (transfer)
+name: exp4
+title: Battery constraints
+algorithms: [astar, qlearning, dqn, ppo]
+train_seeds: 3
+eval_episodes: 100
+train_layouts: null
+eval_layouts: null
+reward_preset: default
+tight_battery: {battery_capacity: 24, battery_init_range: [0.4, 0.6]}   # extra condition: battery binds
+hparams:
+  qlearning: {episodes: 100000, epsilon_decay_episodes: 60000}
+  dqn: {episodes: 3000, use_action_mask: true}
+  ppo: {total_timesteps: 600000}
+quick:
+  train_seeds: 1
+  eval_episodes: 30
+  hparams:
+    qlearning: {episodes: 1500}
+    dqn: {episodes: 100}
+    ppo: {total_timesteps: 8000}

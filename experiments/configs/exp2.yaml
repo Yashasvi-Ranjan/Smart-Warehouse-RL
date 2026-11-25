@@ -1,0 +1,21 @@
+# Experiment 2 - reward engineering. One agent per preset per algorithm; ALL evaluated under the
+# same reference reward (eval_reward) so rewards are comparable. Success/steps are scale-free anyway.
+name: exp2
+title: Reward engineering
+algorithms: [qlearning, dqn]
+reward_presets: [default, sparse, shaped, high_move_penalty, low_collision_penalty, no_pickup_bonus]
+eval_reward: default
+train_seeds: 3
+eval_episodes: 100
+train_layouts: null
+eval_layouts: null
+battery_enabled: true
+hparams:
+  qlearning: {episodes: 100000, epsilon_decay_episodes: 60000}
+  dqn: {episodes: 3000, use_action_mask: true}
+quick:
+  train_seeds: 1
+  eval_episodes: 30
+  hparams:
+    qlearning: {episodes: 1500}
+    dqn: {episodes: 100}

@@ -1,0 +1,22 @@
+# Experiment 3 - generalisation. Models trained on layouts 0-4 (shared with exp1: same run names),
+# evaluated on the training layouts vs unseen layouts 1000-1019 with the same episode seeds.
+name: exp3
+title: Generalisation to unseen layouts
+algorithms: [random, astar, qlearning, dqn, ppo]
+train_seeds: 3
+eval_episodes: 100
+train_layouts: null         # splits.train_layout_seeds
+test_layouts: null          # splits.test_layout_seeds
+reward_preset: default
+battery_enabled: true
+hparams:
+  qlearning: {episodes: 100000, epsilon_decay_episodes: 60000}
+  dqn: {episodes: 3000, use_action_mask: true}
+  ppo: {total_timesteps: 600000}
+quick:
+  train_seeds: 2
+  eval_episodes: 30
+  hparams:
+    qlearning: {episodes: 1500}
+    dqn: {episodes: 100}
+    ppo: {total_timesteps: 8000}

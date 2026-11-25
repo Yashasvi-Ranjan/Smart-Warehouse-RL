@@ -1,0 +1,21 @@
+# Experiment 1 - algorithm comparison (same train layouts, identical held-out eval seeds)
+name: exp1
+title: Algorithm comparison
+algorithms: [random, astar, qlearning, dqn, ppo]   # random/astar are untrained baselines (A* is privileged)
+train_seeds: 3              # independent training runs per learner (CLI --seeds overrides)
+eval_episodes: 100          # episodes per evaluation (seeds eval_seed_base .. +N-1)
+train_layouts: null         # null => splits.train_layout_seeds from config.yaml
+eval_layouts: null          # null => same as train layouts
+reward_preset: default
+battery_enabled: true
+hparams:                    # overrides on top of the defaults of each trainer; episodes/total_timesteps
+  qlearning: {episodes: 100000, epsilon_decay_episodes: 60000}   # are the budget knobs (scaled by --episodes-scale)
+  dqn: {episodes: 3000, use_action_mask: true}
+  ppo: {total_timesteps: 600000}
+quick:                      # used with --quick
+  train_seeds: 2
+  eval_episodes: 30
+  hparams:
+    qlearning: {episodes: 1500}
+    dqn: {episodes: 100}
+    ppo: {total_timesteps: 8000}
